@@ -35,7 +35,6 @@ $app->get('/scan', function (Request $request, Response $response) use ($sane) {
     $params = $request->getQueryParams();
     return $response->withRedirect(sprintf("../outputs/%s?%s",
         $sane->scan($filename, array(
-            '--format=jpeg',
             '--mode=' . validate($params['mode'], ['Lineart', 'Gray', 'Color']),
             '--resolution=' . validate($params['resolution'], [75, 150, 300, 600, 1200]))),
         floor(time())));

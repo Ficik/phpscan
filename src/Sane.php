@@ -23,7 +23,7 @@ class Sane {
     }
 
     public function preview($options=[]){
-        return $this->scan("preview.jpeg", array_merge(['--preview', '--format=jpeg'], $options));
+        return $this->scan("preview.jpeg", array_merge(['--preview'], $options));
     }
 
     public function scan($filename, $options=[]){
@@ -33,7 +33,8 @@ class Sane {
         if ($this->device){
             $command[] = sprintf("--device \"%s\"", $this->device);
         }
-        $command[] = ">";
+        $command[] = '--format=tiff';
+        $command[] = "| convert - -quality 95 ";
         $command[] = $dest;
         exec(implode(" ", $command));
 

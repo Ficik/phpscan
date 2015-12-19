@@ -6,6 +6,7 @@ Very simple php scanner
 
 - sane with sane-tools (`scanimage` executable in PATH)
 - http user must be able to scan with scanimage (`usermod -aG scanner www-data`)
+- imagemagick (`convert` executable in PATH)
 
 ## Install
 
