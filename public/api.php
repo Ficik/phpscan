@@ -24,7 +24,7 @@ function validate($value, $valid_options){
 
 $app->get('/preview', function (Request $request, Response $response) use ($sane) {
     $params = $request->getQueryParams();
-    return $response->withRedirect(sprintf("/outputs/%s?%s",
+    return $response->withRedirect(sprintf("../outputs/%s?%s",
         $sane->preview(array(
             '--mode=' . validate($params['mode'], ['Lineart', 'Gray', 'Color']))),
         floor(time())));
@@ -33,7 +33,7 @@ $app->get('/preview', function (Request $request, Response $response) use ($sane
 $app->get('/scan', function (Request $request, Response $response) use ($sane) {
     $filename = sprintf("Scan_%s.jpg", date("o-j-n_G:i:s"));
     $params = $request->getQueryParams();
-    return $response->withRedirect(sprintf("/outputs/%s?%s",
+    return $response->withRedirect(sprintf("../outputs/%s?%s",
         $sane->scan($filename, array(
             '--format=jpeg',
             '--mode=' . validate($params['mode'], ['Lineart', 'Gray', 'Color']),
